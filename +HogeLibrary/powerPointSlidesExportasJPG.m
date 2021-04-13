@@ -5,8 +5,8 @@ function [] = powerPointSlidesExportasJPG()
 %
 %Select PowerpointFile
 % [FileName,PathName,~] = uigetfile('.pptx');
- PathName =  'C:\Users\snow_\Desktop\Python\';
- FileName =  '•`‰æ—p.pptx';
+ PathName =   [pwd,'\'];%'C:\Users\snow_\Desktop\Python\';
+ FileName =  'image.pptx';
 %Create "images" dir
 if ~(exist('./images') == 7)
     mkdir('images')
