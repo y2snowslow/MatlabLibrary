@@ -17,6 +17,9 @@ function [varargout] = timeSeriesPlot(varargin)
 t = varargin{1};
 yDataCount = 0; % yDataCounter 
 subPlotCount = 1;% subplotWindowCounter
+window_height = 1.05; % set window height. To increse windowsize Number is decrease.
+margin_bottom = 0.05; % Set window under margin 
+
 
 % count y data number 
 for i = 2:nargin
@@ -35,6 +38,11 @@ for i = 2:nargin
     if length(t) == length(varargin{i})
         ax(subPlotCount).axes = subplot(yDataCount,1,subPlotCount);
         plot(t,varargin{i});
+        
+        %Set subplot Margin
+        pos = get(gca, 'Position');
+        pos(4) = (1)/(yDataCount*window_height) - margin_bottom;
+        set(gca, 'Position', pos)
 
         %link-axes and Count-up 
         CombinedAxes = [CombinedAxes,ax(subPlotCount).axes];
