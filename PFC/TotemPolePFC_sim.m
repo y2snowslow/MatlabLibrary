@@ -46,8 +46,8 @@ C = pidtune(sys_muda*sys_plant,'PI',2*pi*2000);
 
 % Ki = C.Ki/Vbus;
 
-Kp = C.Kp
-Ki = C.Ki
+Kp = C.Kp;
+Ki = C.Ki;
 
 
 %%
@@ -64,7 +64,10 @@ Ki = C.Ki
 % 
 % plot(Time, [IL1, IL2] );
 
-[THD,freq]=MyFunction.getTHD(IL1, 1/sample_time, 40)
+[THD,freq] = MyFunction.getTHD(IL1, 1/sample_time, 40);
+
+
+
 
 % [ harmonicOrder, harmonicMagnitude, fundamentalFrequency ] = ee_getHarmonics( Sinwave );
 % thdPercent = ee_calculateThdPercent( harmonicOrder, harmonicMagnitude );
