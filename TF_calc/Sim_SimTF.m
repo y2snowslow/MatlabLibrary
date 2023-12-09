@@ -1,16 +1,19 @@
 %入力側インピーダンスZinと　出力側インピーダンスZoutを計算し
 % Zout / Zin を伝達特性とする。
+clear all
 
 
 %% パラメータ
-SimTime = 3;
+SimTime = 1;
 SampleTime = 1e-6;
 
 L1 = 1e-3;
 L2 = 2e-3;
 C1 = 1e-3;
 C2 = 1e-3;
-R  = 0.01;
+R  = 0.1;
+
+Freq =logspace(0,5,10000); %解析周波数
 
 
 %% 理論式
@@ -18,8 +21,10 @@ R  = 0.01;
 % L2 = 2e-3;
 % C1 = 1e-3;
 % C2 = 1e-3;
-sys =  tf([1],[C1*C2*L1*L2, 0, (C1*L1 + C2*L1 +C2*L2), 0, 1]);
+% sys =  tf([1],[C1*C2*L1*L2, 0, (C1*L1 + C2*L1 +C2*L2), 0, 1]);
 
+sys =  tf([1], [C1*C2*L1*L2, C1*C2*L1*R+C1*C2*L2*R ,C1*C2*R^2+C1*L1+C2*L1+C2*L2,C1*R+2*C2*R,1]);
+% ,1
 % 
 % sys = tf([1],[R*C, 1]);
 
@@ -40,10 +45,10 @@ Vtf = Vout_pow./Vin_pow;
 
 
 %% Matlabモデルからインピーダンス読み込み
-Z_data = power_zmeter('SimTF',logspace(0,5,10000)); %1Hz - 10^5　Hzまで %最後のslxはつけない
+Z_data = power_zmeter('SimTF',Freq); %1Hz - 10^5　Hzまで %最後のslxはつけない
 
 %Zin 
-Freq  = Z_data.Freq;
+% Freq  = Z_data.Freq;
 Gain_in = abs( Z_data.Z(:,1) );
 Phase_in = angle( Z_data.Z(:,1) )/pi*180;
 
