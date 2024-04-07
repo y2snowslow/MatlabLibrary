@@ -1,50 +1,6 @@
 
-
-
-clear all
-close all
-
-% i= 1;
-
-%parameter
-sample_time = 1e-6; %sec
-
-%in out
-Vdc = 50; %V
-
-
-%P_(s)
-L_reactor = 200e-6; %H
-R_reactor = 30e-3; %Ohm
-
-C_smooth = 400e-6; %F
-
-
-%コンポ1
-C1 = 200e-6;
-C1_ESR = 1e-3;
-C1_ESL = 1e-9;
-
-L1   = 1e-6;
-L1_R = 1e-3;
-
-%コンポ2
-C2 = 1000e-6;
-C2_ESR = 1e-3;
-C2_ESL = 1e-9;
-
-L2   = 1e-6;
-L2_R = 1e-3;
-
-%コンポ３
-L_cable = 10e-6;
-R_cable = 12e-3;
-
-R_load  = 1.0; %Ohm NonUse
-current_source = 5.0;  % A C; Current_source_order
-
 % Controller
-FSW = 20e3; %Hz
+Fsw = 20e3; %Hz
 
 FSW_List(:,1) = [3e3:1e3:20e3];
 
